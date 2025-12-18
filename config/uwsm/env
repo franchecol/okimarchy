@@ -4,11 +4,20 @@
 export OMARCHY_PATH=$HOME/.local/share/omarchy
 export PATH=$OMARCHY_PATH/bin:$PATH
 
+# Set default terminal
+export TERMINAL=ghostty
+
 # Set default terminal and editor
 source ~/.config/uwsm/default
 
 # Activate mise if present on the system
-omarchy-cmd-present mise && eval "$(mise activate bash)"
+if [ "$SHELL" = "/bin/bash" ] || [ "$SHELL" = "/usr/bin/bash" ]; then
+  omarchy-cmd-present mise && eval "$(mise activate bash)"
+elif [ "$SHELL" = "/bin/fish" ] || [ "$SHELL" = "/usr/bin/fish" ]; then
+  command -v mise &> /dev/null && mise activate fish | source
+elif [ "$SHELL" = "/bin/zsh" ] || [ "$SHELL" = "/usr/bin/zsh" ]; then
+  command -v mise &> /dev/null && eval "$(mise activate zsh)"
+fi
 
 # Niri-specific: wait for env propagation before spawn-at-startup
 # Apply only when running under Niri/UWSM sessions
