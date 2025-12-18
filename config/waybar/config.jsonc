@@ -18,7 +18,7 @@
     "on-click": "activate",
     "format": "{icon}",
     "format-icons": {
-      "default": "",
+      "default": "",
       "1": "1",
       "2": "2",
       "3": "3",
@@ -28,6 +28,7 @@
       "7": "7",
       "8": "8",
       "9": "9",
+      "10": "0",
       "active": "󱓻"
     },
     "persistent-workspaces": {
@@ -42,13 +43,13 @@
     "all-outputs": true,
     "format": "{icon}",
     "format-icons": {
-      "default": "",
+      "default": "",
       "1": "1",
       "2": "2",
       "3": "3",
       "4": "4",
       "active": "󱓻"
-    },
+    }
   },
   "custom/omarchy": {
     "format": "<span font='omarchy'>\ue900</span>",
@@ -57,7 +58,7 @@
     "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
   },
   "custom/update": {
-    "format": "",
+    "format": "",
     "exec": "omarchy-update-available",
     "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
     "tooltip-format": "Omarchy update available",
@@ -68,7 +69,8 @@
   "cpu": {
     "interval": 5,
     "format": "󰍛",
-    "on-click": "xdg-terminal-exec btop"
+    "on-click": "omarchy-launch-or-focus-tui btop",
+    "on-click-right": "alacritty"
   },
   "clock": {
     "format": "{:L%A %H:%M}",
@@ -93,7 +95,7 @@
     "format": "{capacity}% {icon}",
     "format-discharging": "{icon}",
     "format-charging": "{icon}",
-    "format-plugged": "",
+    "format-plugged": "",
     "format-icons": {
       "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
       "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
@@ -109,21 +111,22 @@
     }
   },
   "bluetooth": {
-    "format": "",
+    "format": "",
     "format-disabled": "󰂲",
-    "format-connected": "",
+    "format-connected": "󰂱",
+    "format-no-controller": "",
     "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "blueberry"
+    "on-click": "omarchy-launch-bluetooth"
   },
   "pulseaudio": {
     "format": "{icon}",
-    "on-click": "xdg-terminal-exec --app-id=com.omarchy.Wiremix -e wiremix",
+    "on-click": "omarchy-launch-or-focus-tui wiremix",
     "on-click-right": "pamixer -t",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
-    "format-muted": "",
+    "format-muted": "",
     "format-icons": {
-      "default": ["", "", ""]
+      "default": ["", "", ""]
     }
   },
   "group/tray-expander": {
@@ -135,7 +138,7 @@
     "modules": ["custom/expand-icon", "tray"]
   },
   "custom/expand-icon": {
-    "format": "",
+    "format": "",
     "tooltip": false
   },
   "custom/screenrecording-indicator": {
